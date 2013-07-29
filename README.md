@@ -23,8 +23,12 @@ In brief, this is an example of some code for iOS
 
 ```c++
 //add the listener to your app class
+
+#include "EAVIGUI.interfaceManager.h"
 class GUIApp : public ofxiPhoneApp, public EAVIGUI::InterfaceListener {
 
+EAVIGUI::ImageButton * button;
+EAVIGUI::InterfaceListener  callback;
 ```
 
  --- in app.mm
@@ -35,7 +39,7 @@ enum guiIDS {BUTTON1};
 
 void setup() {
 
-    button = new EAVIGUI::ImageButton(callback, BUTTON1, 0, 0, "button.png", "buttonOver.png"); //initialise a button
+    button = new EAVIGUI::ImageButton(&callback, BUTTON1, 0, 0, "button.png", "buttonOver.png"); //initialise a button
     button->setRelativePositioning(0.5, -button->getScaledWidth()/2.0, 0.5, -button->getScaledHeight()/2.0); //relative position, for screen rotations
     EAVIGUI::InterfaceManager::addObject(button); //add to gui
     button->setVisible(true);
